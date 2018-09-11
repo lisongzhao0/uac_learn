@@ -16,7 +16,7 @@ import com.querydsl.core.types.Path;
 @Generated("com.querydsl.codegen.EntitySerializer")
 public class QMember extends EntityPathBase<Member> {
 
-    private static final long serialVersionUID = -469284462L;
+    private static final long serialVersionUID = -1462105139L;
 
     public static final QMember member = new QMember("member1");
 

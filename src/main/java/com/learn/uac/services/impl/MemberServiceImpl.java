@@ -14,7 +14,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.Optional;
 
-@Service("UserServiceImpl")
+@Service("MemberServiceImpl")
 public class MemberServiceImpl implements MemberService {
 
     @Autowired
@@ -37,7 +37,4 @@ public class MemberServiceImpl implements MemberService {
         Predicate predicate = qmember.account.eq(account);
         return repositoryDsl.findOne(predicate);
     }
-
-
-
 }

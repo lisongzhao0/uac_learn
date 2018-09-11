@@ -1,36 +1,36 @@
 package com.learn.uac.model;
 
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "uac_role")
 public class Role implements Serializable {
 
     @Id
-    @Column(name = "role_id", nullable = false, unique = true)
-    private String roleId;
-
-    @Column(name = "role_name", nullable = false, length = 20)
+    @Column(name = "role_name", nullable = false, length = 100, unique = true)
     private String roleName;
 
-    @Column(name = "status", nullable = false)
-    private int status;
+    @Column(name = "enabled", nullable = false)
+    private boolean enabled;
 
     @Column(name = "remarks")
     private String remarks;
 
+    @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+    @JoinTable(name = "uac_role_func", joinColumns = { @JoinColumn(name = "role_name") }, inverseJoinColumns = { @JoinColumn(name = "func_name") })
+    @LazyCollection(LazyCollectionOption.EXTRA)
+    private Set<Function> functions = new HashSet<>();
+
     //======================================
     //          getter/setter
     //======================================
-
-    public String getRoleId() {
-        return roleId;
-    }
-
-    public void setRoleId(String roleId) {
-        this.roleId = roleId;
-    }
 
     public String getRoleName() {
         return roleName;
@@ -40,12 +40,12 @@ public class Role implements Serializable {
         this.roleName = roleName;
     }
 
-    public int getStatus() {
-        return status;
+    public boolean isEnabled() {
+        return enabled;
     }
 
-    public void setStatus(int status) {
-        this.status = status;
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 
     public String getRemarks() {

@@ -2,12 +2,14 @@ package com.learn.uac.model.dsl;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
+import com.learn.uac.model.Function;
 import com.learn.uac.model.Role;
 import com.querydsl.core.types.dsl.*;
 
 import com.querydsl.core.types.PathMetadata;
 import javax.annotation.Generated;
 import com.querydsl.core.types.Path;
+import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
@@ -20,13 +22,13 @@ public class QRole extends EntityPathBase<Role> {
 
     public static final QRole role = new QRole("role");
 
+    public final BooleanPath enabled = createBoolean("enabled");
+
+    public final SetPath<Function, QFunction> functions = this.<Function, QFunction>createSet("functions", Function.class, QFunction.class, PathInits.DIRECT2);
+
     public final StringPath remarks = createString("remarks");
 
-    public final StringPath roleId = createString("roleId");
-
     public final StringPath roleName = createString("roleName");
-
-    public final NumberPath<Integer> status = createNumber("status", Integer.class);
 
     public QRole(String variable) {
         super(Role.class, forVariable(variable));
