@@ -12,19 +12,19 @@ import org.springframework.security.web.server.authentication.ServerAuthenticati
 @EnableWebSecurity
 public class UACWebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private AuthenticationSuccessHandler loginSuccessHandler;
+    //@Autowired
+    //private AuthenticationSuccessHandler loginSuccessHandler;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/", "/home").access("USER")
+                .antMatchers("/", "/home").permitAll()
                 .antMatchers("/admin/**").access("ADMIN")
                 .antMatchers("/db/**").access("hasAnyRole('ADMIN', 'DBA')")
                 .and()
-                .formLogin()
-                .loginPage("/login").successHandler(loginSuccessHandler)
-                .and()
+                //.formLogin()
+                //.loginPage("/login").successHandler(loginSuccessHandler)
+                //.and()
                 .csrf();
     }
 }

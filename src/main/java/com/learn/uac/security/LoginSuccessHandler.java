@@ -1,7 +1,5 @@
 package com.learn.uac.security;
 
-import com.learn.uac.services.MemberService;
-import com.learn.uac.model.Member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
@@ -15,11 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 
     @Autowired
-    private MemberService memberService;
+    //private MemberService memberService;
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
-        Optional<Member> user = memberService.getMember(authentication.getName());
-        Member member = user.get();
+        //Optional<Member> user = memberService.getMember(authentication.getName());
+        //Member member = user.get();
     }
 }
